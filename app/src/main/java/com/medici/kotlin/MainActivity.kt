@@ -5,6 +5,9 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.medici.kotlin.common.no
+import com.medici.kotlin.common.otherwise
+import com.medici.kotlin.common.yes
 import kotlinx.android.synthetic.main.activity_main.*
 
 private const val REQUEST_CODE = 1000
@@ -19,14 +22,23 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this@MainActivity,LoginActivity::class.java)
             this@MainActivity.startActivityForResult(intent,REQUEST_CODE)
         }
-    }
 
-    override fun onRestart() {
-        super.onRestart()
-        var count = 100000
-        while (count > 0){
-            count--
+        val str1 = false.yes {
+            "YES"
+        }.otherwise {
+            "NO"
         }
+
+        println(str1)
+
+        val str2 = false.no {
+            "NO"
+        }.otherwise {
+            "YES"
+        }
+
+        println(str2)
+
     }
 
     override fun onConfigurationChanged(newConfig: Configuration?) {
@@ -43,12 +55,12 @@ class MainActivity : AppCompatActivity() {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(resultCode == Activity.RESULT_OK){
-            /*if(requestCode == REQUEST_CODE){
+            if(requestCode == REQUEST_CODE){
                 var count = 1000000
                 while (count > 0){
                     count--
                 }
-            }*/
+            }
         }
     }
 }
