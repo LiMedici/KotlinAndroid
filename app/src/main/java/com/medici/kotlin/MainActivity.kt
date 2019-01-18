@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.res.Configuration
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import com.medici.kotlin.common.base.BaseFragment
 import com.medici.kotlin.common.no
 import com.medici.kotlin.common.otherwise
 import com.medici.kotlin.common.yes
@@ -23,21 +24,12 @@ class MainActivity : AppCompatActivity() {
             this@MainActivity.startActivityForResult(intent,REQUEST_CODE)
         }
 
-        val str1 = false.yes {
-            "YES"
-        }.otherwise {
-            "NO"
-        }
+        val fragment = BaseFragment.OtherFragment()
+        println(fragment.toString())
+        println(fragment.presenter.toString())
+        println(fragment.presenter.view.toString())
 
-        println(str1)
-
-        val str2 = false.no {
-            "NO"
-        }.otherwise {
-            "YES"
-        }
-
-        println(str2)
+        fragment.onResume()
 
     }
 
